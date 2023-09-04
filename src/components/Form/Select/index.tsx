@@ -4,14 +4,14 @@ import * as SelectPrimitve from '@radix-ui/react-select'
 import { ChevronDown } from 'lucide-react'
 import { ReactNode } from 'react'
 
-export interface SelectProps {
+export interface SelectProps extends SelectPrimitve.SelectProps {
   children: ReactNode
   placeholder: string
 }
 
-export function Select({ children, placeholder }: SelectProps) {
+export function Select({ children, placeholder, ...props }: SelectProps) {
   return (
-    <SelectPrimitve.Root>
+    <SelectPrimitve.Root {...props}>
 
       <SelectPrimitve.Trigger className='flex h-11 w-full items-center justify-between gap-2 rounded-lg border border-zinc-300 px-3 py-2 shadow-sm data-[placeholder]:text-zinc-600 outline-none'>
         <SelectPrimitve.Value className='text-black' placeholder={placeholder} />
@@ -24,7 +24,7 @@ export function Select({ children, placeholder }: SelectProps) {
         <SelectPrimitve.Content
           side='bottom'
           position='popper'
-          className='z-10 w-[--radix-select-trigger-width] rounded-lg border border-zinc-300 bg-white overflow-hidden'
+          className='z-10 w-[--radix-select-trigger-width] rounded-lg border border-zinc-300 bg-white overflow-hidden shadow-sm'
           sideOffset={8}
         >
           <SelectPrimitve.Viewport>
